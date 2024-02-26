@@ -9,7 +9,7 @@ def main():
 
     ModelDescriptions.display_description(model_option)
 
-    uploaded_file = st.file_uploader("Upload Image", type=["jpg", "jpeg", "png"])
+    uploaded_file = st.sidebar.file_uploader("Upload Image", type=["jpg", "jpeg", "png"])
 
     if uploaded_file:
         st.success("Image uploaded successfully!")
