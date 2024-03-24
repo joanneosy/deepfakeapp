@@ -2,12 +2,13 @@
 
 import streamlit as st
 from description import ModelDescriptions
+from cnn import DeepFakeDetector
 
 def main():
     st.sidebar.title("Model Selection")
     
     # Add placeholder to model selection dropdown
-    model_option = st.sidebar.selectbox("Select Model", ["Please select a model", "ModelA", "ModelB"])
+    model_option = st.sidebar.selectbox("Select Model", ["Please select a model", "MesoNet", "Convolutional Neural Network"])
 
     # Check if a model is selected
     if model_option != "Please select a model":
