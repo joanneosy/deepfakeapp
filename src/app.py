@@ -3,6 +3,9 @@
 import streamlit as st
 from description import ModelDescriptions
 from cnn import DeepFakeDetector
+from PIL import Image
+from results import Results
+from mesonet import *
 
 def main():
     st.sidebar.title("Model Selection")
@@ -18,20 +21,31 @@ def main():
 
         if uploaded_file:
             st.success("Image uploaded successfully!")
+            pil_image = Image.open(uploaded_file)
             run_model_button = st.button("Run Model")
 
             if run_model_button:
                 st.text("Running Model...")
+
                 with st.spinner("In progress..."):
-                    # Simulate model running for 10 seconds
-                    import time
-                    time.sleep(10)
-                st.success("Model finished running!")
+                    results = Results.get_results(model_option, pil_image)
 
-                show_results_button = st.button("Show Results")
-
-                if show_results_button:
+                if results == -1:
+                    st.error("Something went wrong! Please try again.")
+                elif model_option == 'MesoNet':
+                    # {'Fake': 0, 'Real': 1}
                     st.success("Image classified!")
+                    real_certainty = round(results[0][0] * 100, 2)
+                    fake_certainty = round((1 - results[0][0]) * 100, 2)
+                    if results < 0.5:
+                        prediction = 'Fake'
+                    else:
+                        prediction = 'Real'
+                    st.write(f"Prediction: {prediction}")
+                    st.write(f"Real Certainty: {real_certainty}%")
+                    st.write(f"Fake Certainty: {fake_certainty}%")
+                elif model_option == 'Convolutional Neural Network':
+                    st.write('In Progress')
 
     else:
         # Landing page with animation about deepfake
