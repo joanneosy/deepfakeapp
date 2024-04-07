@@ -1,10 +1,7 @@
 import numpy as np
-import matplotlib.pyplot as plt
 from tensorflow.keras.layers import Input, Dense, Flatten, Conv2D, MaxPooling2D, BatchNormalization, Dropout, LeakyReLU
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.models import Model
-from tensorflow.keras.callbacks import ReduceLROnPlateau, EarlyStopping, ModelCheckpoint
 
 # Set image dimensions
 image_dimensions = {'height': 128, 'width': 128, 'channels': 3}

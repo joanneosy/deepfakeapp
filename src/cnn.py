@@ -1,13 +1,5 @@
-import tensorflow as tf
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-import os
 import numpy as np
 import tensorflow as tf
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import confusion_matrix
-import matplotlib.pyplot as plt
-from keras.callbacks import ModelCheckpoint
 from tensorflow.keras.preprocessing import image
 
 class DeepFakeDetectionModel(tf.keras.Model):

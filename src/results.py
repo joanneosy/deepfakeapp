@@ -1,5 +1,4 @@
 """Results module"""
-import streamlit as st
 from mesonet import *
 from cnn import *
 

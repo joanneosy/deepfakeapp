@@ -2,10 +2,8 @@
 
 import streamlit as st
 from description import ModelDescriptions
-from cnn import DeepFakeDetector
 from PIL import Image
 from results import Results
-from mesonet import *
 
 def main():
     st.sidebar.title("Model Selection")
@@ -33,15 +31,15 @@ def main():
                 elif model_option in ('MesoNet', 'Convolutional Neural Network'):
                     # {'Fake': 0, 'Real': 1}
                     st.success("Image classified!")
-                    real_certainty = round(results[0][0] * 100, 2)
-                    fake_certainty = round((1 - results[0][0]) * 100, 2)
+                    real_conf = round(results[0][0] * 100, 2)
+                    fake_conf = round((1 - results[0][0]) * 100, 2)
+                    st.write(f"Results: {results[0][0]}")
                     if results < 0.5:
-                        prediction = 'Fake'
+                        st.write(f"Prediction: Fake")
+                        st.write(f"Confidence: {fake_conf}%")
                     else:
-                        prediction = 'Real'
-                    st.write(f"Prediction: {prediction}")
-                    st.write(f"Real Certainty: {real_certainty}%")
-                    st.write(f"Fake Certainty: {fake_certainty}%")
+                        st.write(f"Prediction: Real")
+                        st.write(f"Real Certainty: {real_conf}%")
 
     else:
         # Landing page with animation about deepfake
