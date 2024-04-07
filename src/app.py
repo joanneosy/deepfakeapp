@@ -25,14 +25,12 @@ def main():
             run_model_button = st.button("Run Model")
 
             if run_model_button:
-                st.text("Running Model...")
-
                 with st.spinner("In progress..."):
                     results = Results.get_results(model_option, pil_image)
 
                 if results == -1:
                     st.error("Something went wrong! Please try again.")
-                elif model_option == 'MesoNet':
+                elif model_option in ('MesoNet', 'Convolutional Neural Network'):
                     # {'Fake': 0, 'Real': 1}
                     st.success("Image classified!")
                     real_certainty = round(results[0][0] * 100, 2)
@@ -44,8 +42,6 @@ def main():
                     st.write(f"Prediction: {prediction}")
                     st.write(f"Real Certainty: {real_certainty}%")
                     st.write(f"Fake Certainty: {fake_certainty}%")
-                elif model_option == 'Convolutional Neural Network':
-                    st.write('In Progress')
 
     else:
         # Landing page with animation about deepfake

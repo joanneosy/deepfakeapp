@@ -18,5 +18,11 @@ class ModelDescriptions:
                 unsafe_allow_html=True
             )
         elif model_name == "Convolutional Neural Network":
-            st.markdown("<p><b>Description for ModelB:</b> Hello world</p>", unsafe_allow_html=True)
-
+            st.markdown(
+                """
+                <ul style="list-style-type: none; padding-left: 0;">
+                    <li><b style="color: orange; font-size: 30px;">Convolutional Neural Network:</b></li>
+                </ul>
+                """,
+                unsafe_allow_html=True
+            )
