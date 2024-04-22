@@ -9,7 +9,7 @@ def main():
     st.sidebar.title("Model Selection")
     
     # Add placeholder to model selection dropdown
-    model_option = st.sidebar.selectbox("Select Model", ["Please select a model", "MesoNet", "Convolutional Neural Network"])
+    model_option = st.sidebar.selectbox("Select Model", ["Please select a model", "MesoNet", "XGBoost"])
 
     # Check if a model is selected
     if model_option != "Please select a model":
@@ -28,18 +28,18 @@ def main():
 
                 if results == -1:
                     st.error("Something went wrong! Please try again.")
-                elif model_option in ('MesoNet', 'Convolutional Neural Network'):
+                elif model_option in ('MesoNet', 'XGBoost'):
                     # {'Fake': 0, 'Real': 1}
                     st.success("Image classified!")
-                    real_conf = round(results[0][0] * 100, 2)
-                    fake_conf = round((1 - results[0][0]) * 100, 2)
-                    st.write(f"Results: {results[0][0]}")
+                    real_conf = round(results[0] * 100, 2)
+                    fake_conf = round((1 - results[0]) * 100, 2)
+                    st.write(f"Results: {results[0]}")
                     if results < 0.5:
                         st.write(f"Prediction: Fake")
                         st.write(f"Confidence: {fake_conf}%")
                     else:
                         st.write(f"Prediction: Real")
-                        st.write(f"Real Certainty: {real_conf}%")
+                        st.write(f"Confidence: {real_conf}%")
 
     else:
         # Landing page with animation about deepfake

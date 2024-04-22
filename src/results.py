@@ -1,6 +1,7 @@
 """Results module"""
 from mesonet import *
 from cnn import *
+from xgboost_model import *
 
 class Results:
     @staticmethod
@@ -8,13 +9,10 @@ class Results:
         if model_name == 'MesoNet':
             meso = Meso4()
             meso.load('./weights/mesonet.weights.h5')
-            prediction = meso.predict(Meso4.preprocess_image(image))
+            prediction = meso.predict(Meso4.preprocess_image(image))[0]
 
-        elif model_name == 'Convolutional Neural Network':
-            detector = DeepFakeDetector()
-            detector.load_model_weights(filepath='./weights/cnn.weights.h5')
-            preprocessed_image = DeepFakeDetector.preprocess_image(image)
-            prediction = detector.model.predict(preprocessed_image)
+        elif model_name == 'XGBoost':
+            prediction = DeepFakeXGB.predict_image_label(DeepFakeXGB.preprocess_image(image))
 
         else:
             prediction = -1
