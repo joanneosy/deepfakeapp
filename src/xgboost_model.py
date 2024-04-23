@@ -10,7 +10,7 @@ class DeepFakeXGB():
     # Function to preprocess an image
     def preprocess_image(image):
         # Resize the image to match the size used during training
-        image = image.resize((50, 50))
+        image = image.resize((40, 40))
         # Flatten the image to match the input format
         image = np.array(image)
         flattened_image = image.flatten()
