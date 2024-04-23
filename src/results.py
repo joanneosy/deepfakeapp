@@ -1,6 +1,5 @@
 """Results module"""
 from mesonet import *
-from cnn import *
 from xgboost_model import *
 
 class Results:
